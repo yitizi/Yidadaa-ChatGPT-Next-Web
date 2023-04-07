@@ -1,18 +1,19 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
-import "./styles/prism.scss";
+import "./styles/highlight.scss";
 import process from "child_process";
-import { ACCESS_CODES } from "./api/access";
+import { ACCESS_CODES, IS_IN_DOCKER } from "./api/access";
 
 let COMMIT_ID: string | undefined;
 try {
   COMMIT_ID = process
+    // .execSync("git describe --tags --abbrev=0")
     .execSync("git rev-parse --short HEAD")
     .toString()
     .trim();
 } catch (e) {
-  console.error("No git or not from git repo.")
+  console.error("No git or not from git repo.");
 }
 
 export const metadata = {
@@ -20,15 +21,15 @@ export const metadata = {
   description: "Your personal ChatGPT Chat Bot.",
   appleWebApp: {
     title: "ChatGPT Next Web",
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
   },
-  themeColor: "#fafafa"
+  themeColor: "#fafafa",
 };
 
 function Meta() {
   const metas = {
     version: COMMIT_ID ?? "unknown",
-    access: ACCESS_CODES.size > 0 ? "enabled" : "disabled",
+    access: ACCESS_CODES.size > 0 || IS_IN_DOCKER ? "enabled" : "disabled",
   };
 
   return (
@@ -51,6 +52,11 @@ export default function RootLayout({
         <meta
           name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta
+          name="theme-color"
+          content="#151515"
+          media="(prefers-color-scheme: dark)"
         />
         <Meta />
         <link rel="manifest" href="/site.webmanifest"></link>
