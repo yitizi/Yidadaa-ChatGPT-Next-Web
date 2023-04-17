@@ -19,6 +19,7 @@ const es: LocaleType = {
       Copy: "Copiar",
       Stop: "Detener",
       Retry: "Reintentar",
+      Delete: "Delete",
     },
     Rename: "Renombrar chat",
     Typing: "Escribiendo...",
@@ -60,6 +61,12 @@ const es: LocaleType = {
       ClearAll: "Borrar todos los datos",
       ResetAll: "Restablecer todas las configuraciones",
       Close: "Cerrar",
+      ConfirmResetAll: {
+        Confirm: "Are you sure you want to reset all configurations?",
+      },
+      ConfirmClearAll: {
+        Confirm: "Are you sure you want to reset all chat?",
+      },
     },
     Lang: {
       Name: "Language",
@@ -69,6 +76,9 @@ const es: LocaleType = {
         tw: "繁體中文",
         es: "Español",
         it: "Italiano",
+        tr: "Türkçe",
+        jp: "日本語",
+        de: "Deutsch",
       },
     },
     Avatar: "Avatar",
